@@ -23,20 +23,17 @@ export class UserService {
     });
   }
 
-  // Fetch Single Student Object
-  GetStudent(id: string) {
+  GetUser(id: string) {
     this.userRef = this.db.object('users-list/' + id);
     return this.userRef;
   }
 
-  // Fetch Students List
-  GetStudentsList() {
+  GetUsersList() {
     this.usersRef = this.db.list('users-list');
     return this.usersRef;
   }
 
-  // Update Student Object
-  UpdateStudent(user: User) {
+  UpdateUser(user: User) {
     this.userRef.update({
       id: user.$id,
       username: user.username,
@@ -45,8 +42,7 @@ export class UserService {
     });
   }
 
-  // Delete Student Object
-  DeleteStudent(id: string) {
+  DeleteUser(id: string) {
     this.userRef = this.db.object('users-list/' + id);
     this.usersRef.remove();
   }
