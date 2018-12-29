@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: 'AIzaSyCOk9shRQeqqgzXRVK_VIibwYa6x7XiNck',
+    authDomain: 'musicmatcherspotify.firebaseapp.com',
+    databaseURL: 'https://musicmatcherspotify.firebaseio.com',
+    projectId: 'musicmatcherspotify',
+    storageBucket: 'musicmatcherspotify.appspot.com',
+    messagingSenderId: '275934901797'
+  }
 };
 
 /*
