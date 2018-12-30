@@ -8,11 +8,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { MatchedComponent} from './matched/matched.component';
 
 // Routes array define component along with the path name for url
 const routes: Routes = [
-  { path: '', redirectTo: '/add-user', pathMatch: 'full' },
-  { path: 'add-user', component: AddUserComponent },
+  { path: 'matched', component: MatchedComponent },
   { path: 'list-users', component: UserListComponent },
   { path: 'edit-user/:id', component: EditUserComponent }
 ];
