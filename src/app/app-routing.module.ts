@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 // Include components for in which router service to be used
-import { AddUserComponent } from './user/add-user/add-user.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { MatchedComponent} from './matched/matched.component';

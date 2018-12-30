@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import {mergeSourceMaps} from '@angular/compiler-cli/src/ngcc/src/rendering/renderer';
-
-
 
 
 @Injectable({
@@ -20,8 +17,7 @@ export class SpotifyService {
   });
 
 
-
-  getNewReleases(headers){
+  getTopTrack(headers){
     return this._http.get(this.url+`me/top/artists`, {headers: new HttpHeaders({'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + headers })})
       .pipe( map(data => data['items'].items));

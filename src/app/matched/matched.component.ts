@@ -34,7 +34,7 @@ export class MatchedComponent implements OnInit {
     this.headers.set('Authorization', 'Bearer3 '+ this.data);
 
 
-    this._spotifyService.getNewReleases(this.data)
+    this._spotifyService.getTopTrack(this.data)
       .subscribe(
         (data: any) =>{
           this.newReleases = data;
@@ -50,32 +50,5 @@ export class MatchedComponent implements OnInit {
 
   }
   ngOnInit() {
-
-    this._spotifyService.getNewReleases(this.headers)
-      .subscribe(
-        (data: any) =>{
-          this.newReleases = data;
-          this.preloading = false;
-          console.log(this.newReleases);
-        },(error)=>{
-          this.preloading = false;
-          this.error = true;
-          this.message = error.error.error.message;
-          console.log(error.error.error.message);
-        });
-
-
-this._spotifyService.getArtist('eminem', this.headers)
-  .subscribe(
-    (data: any) =>{
-      this.newReleases = data;
-      this.preloading = false;
-      console.log(this.newReleases);
-    },(error)=>{
-      this.preloading = false;
-      this.error = true;
-      this.message = error.error.error.message;
-      console.log(error.error.error.message);
-    });
-
-}  }
+  }
+}
