@@ -10,13 +10,17 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatchedComponent } from './matched/matched.component';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddUserComponent,
     EditUserComponent,
-    UserListComponent
+    UserListComponent,
+    MatchedComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
