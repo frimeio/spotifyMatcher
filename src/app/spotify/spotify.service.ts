@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+import {mergeSourceMaps} from '@angular/compiler-cli/src/ngcc/src/rendering/renderer';
+
+
 
 
 @Injectable({
@@ -13,28 +15,30 @@ export class SpotifyService {
 
   private url = 'https://api.spotify.com/v1/';
 
-  private headers: HttpHeaders = new HttpHeaders({
-    'Authorization': 'Bearer BQBCmAvTI8T_Z639OSpM8hwiq0y7zQFqc72b1bw-ze9x6huOW0ghH7YVFrtDSjw0xc4UWPxMI1VHOkKHOdE'
-  })
+  headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',
+    'Authorization': 'Bearer BQDgkERge6ec5p8j-kLiIsiIt67Dr9a29a2wxIKjN-YBLwgzPjSUUTeXwmEu8_JQNq635Mjn5Gt-Rk_JsYptjYd8BJEOV-c_KXcQkpg-ffzFhiOHMkMKVRGaRgDYEBj3BvNGSfTJfODge0YjwmQxGmzAM8ywyR4wt48URZY'
+  });
 
 
-  getNewReleases() {
-    return this._http.get(this.url + `browse/new-releases`, {headers: this.headers})
-      .pipe( map(data => data['albums'].items));
+
+  getNewReleases(headers){
+    return this._http.get(this.url+`me/top/artists`, {headers: new HttpHeaders({'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + headers })})
+      .pipe( map(data => data['items'].items));
   }
 
-  getArtist(txt: string) {
-    return this._http.get(this.url + `search?q=${ txt }&type=artist&market=SV&offset=0&limit=20`, {headers: this.headers})
+  getArtist(txt:string, headers){
+    return this._http.get(this.url+`search?q=${ txt }&type=artist&market=SV&offset=0&limit=20`, {headers: headers})
       .pipe( map(data => data['artists'].items));
   }
 
-  getArtistById(id: string) {
-    return this._http.get(this.url + `artists/${id}`, {headers: this.headers});
+  getArtistById(id:string){
+    return this._http.get(this.url + `artists/${id}`, {headers: this.headers})
   }
 
-  getTopTracks(id: string) {
+  getTopTracks(id:string){
     return this._http.get(this.url + `artists/${id}/top-tracks?country=us`, {headers: this.headers})
-      .pipe(map(data => data['tracks']));
+      .pipe(map(data => data['tracks']))
   }
 
 }
