@@ -20,7 +20,7 @@ export class SpotifyService {
   getTopTrack(headers){
     return this._http.get(this.url+`me/top/artists`, {headers: new HttpHeaders({'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + headers })})
-      .pipe(map(data => data['items'].items));
+      .pipe(map(data => data['items']['0']['name']));
   }
 
   getArtist(txt:string, headers){

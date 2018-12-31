@@ -24,7 +24,8 @@ export class MatchedComponent implements OnInit {
     this._spotifyService.getTopTrack(this.data)
       .subscribe(
         (data: any) => {
-          this.topArtist = data;
+          this.topArtist = data
+          console.log(data);
         }, (error) => {
           this.error = true;
           this.message = error.error.error.message;
