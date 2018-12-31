@@ -13,15 +13,26 @@ export class UserService {
   // Inject AngularFireDatabase Dependency in Constructor
   constructor(private db: AngularFireDatabase) { }
 
+
+
+  getData(){
+    this.usersRef = this.db.list('usersRef');
+    return this.usersRef;
+  }
   // Create User
-  AddUser(user: User) {
+  AddUser(id: string, favArtist: string, email: string) {
+    if (!this.usersRef) {
+      console.log('UsersRef is undefined!');
+      this.usersRef = this.getData();
+    }
+
     this.usersRef.push({
-      id: user.$id,
-      username: user.username,
-      email: user.email,
-      favartist: user.favartist
+      id: id,
+      email: email,
+      favArtist: favArtist,
     });
   }
+
 
   GetUser(id: string) {
     this.userRef = this.db.object('users-list/' + id);
@@ -31,15 +42,6 @@ export class UserService {
   GetUsersList() {
     this.usersRef = this.db.list('users-list');
     return this.usersRef;
-  }
-
-  UpdateUser(user: User) {
-    this.userRef.update({
-      id: user.$id,
-      username: user.username,
-      email: user.email,
-      favartist: user.favartist
-    });
   }
 
   DeleteUser(id: string) {

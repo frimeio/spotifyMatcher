@@ -8,31 +8,52 @@ import {SpotifyService} from '../spotify/spotify.service';
   styleUrls: ['./matched.component.css']
 })
 export class MatchedComponent implements OnInit {
-  topArtist: any;
+  topArtist = [];
   message: string;
   error: Boolean;
   data: string;
+  TOPSONGS = 3;
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    public _spotifyService: SpotifyService
+    public _spotifyService: SpotifyService,
   ) {
-
     this.activatedRoute.queryParams.subscribe(params => {
       this.data = params['access_token'];
       console.log(this.data);
     });
-    this._spotifyService.getTopTrack(this.data)
+  }
+
+  ngOnInit() {
+    this._spotifyService.getUserData(this.data)
       .subscribe(
         (data: any) => {
-          this.topArtist = data
-          console.log(data);
+          console.log(data['id'] + ' : ' + data['email']);
         }, (error) => {
           this.error = true;
           this.message = error.error.error.message;
           console.log(error.error.error.message);
         });
-    console.log(this.topArtist);
+
+    for (let _i = 0; _i < this.TOPSONGS; _i++) {
+      this.getTopXTrack(this.data, _i);
+      console.log( 'test' + this.getTopXTrack(this.data, _i));
+    }
+
+
   }
-  ngOnInit() {
+
+  getTopXTrack(token, x) {
+    return this._spotifyService.getTopTrack(this.data, x)
+      .subscribe(
+        (data: any) => {
+          this.topArtist[x] = (data);
+          console.log('FUCK YEAH ' + data);
+        }, (error) => {
+          this.error = true;
+          this.message = error.error.error.message;
+          console.log(error.error.error.message);
+        });
   }
+
 }
