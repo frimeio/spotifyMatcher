@@ -9,3 +9,13 @@
   display: table;
   clear: both;
 }
+.row{
+background-color: #333333
+}
+.top {
+  height: 10em;
+  font-family: Lucida Grande, Tahoma, Calibri, Arial, sans-serif;
+}
+.middle{
+  height: 50em;
+}

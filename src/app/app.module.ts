@@ -11,6 +11,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { MatchedComponent } from './matched/matched.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ArtistComponent } from './artist/artist.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -27,8 +28,8 @@ import { ArtistComponent } from './artist/artist.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AppRoutingModule,
-    HttpClientModule
-
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,6 +25,7 @@
     "browserify": "^16.2.3",
     "core-js": "^2.5.4",
     "firebase": "^5.7.2",
+    "ngx-spinner": "^6.1.2",
     "ngx-toastr": "^9.1.1",
     "rxjs": "~6.3.3",
     "spotify-web-api-node": "^4.0.0",

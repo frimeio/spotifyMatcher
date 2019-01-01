@@ -22,14 +22,15 @@ export class ArtistComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
   }
 
-
-
   getArtistFollowURL() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.spotifyArtistFollowURL+this.artistURI+'&size=detail&theme=light');
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.spotifyArtistFollowURL+this.artistURI+'&size=detail&theme=dark');
   }
   getArtistPlaylistURL() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.spotifyArtistPlaylistURL+this.artistURI);
   }
+
+
 }

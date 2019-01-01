@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SpotifyService} from '../spotify/spotify.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-matched',
@@ -17,6 +18,7 @@ export class MatchedComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public _spotifyService: SpotifyService,
+    private spinner: NgxSpinnerService
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.data = params['access_token'];
@@ -25,6 +27,11 @@ export class MatchedComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 2000);
     this._spotifyService.getUserData(this.data)
       .subscribe(
         (data: any) => {
