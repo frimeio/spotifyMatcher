@@ -17,30 +17,31 @@ export class SpotifyService {
   });
 
 
-  getTopTrack(token,x){
-    return this._http.get(this.url+`me/top/artists`, {headers: new HttpHeaders({'Content-Type': 'application/json',
+  getTopTrack(token, x) {
+    return this._http.get(this.url + `me/top/artists`, {headers: new HttpHeaders({'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token })})
-      .pipe(map(data => data['items'][x]['name']));
+      .pipe(map(data => data['items'][x]['uri'].split(':')[2]));
   }
 
   getUserData(token){
-    return this._http.get(this.url+`me`, {headers: new HttpHeaders({'Content-Type': 'application/json',
+    return this._http.get(this.url + `me`, {headers: new HttpHeaders({'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token })})
       .pipe(map(data => data));
   }
 
-  getArtist(txt:string, headers){
-    return this._http.get(this.url+`search?q=${ txt }&type=artist&market=SV&offset=0&limit=20`, {headers: headers})
-      .pipe( map(data => data['artists'].items));
+  //TODO: Get Similar Artist
+  getArtist(id: string, x) {
+    return this._http.get(this.url + `artists/${id}/related-artists`)
+      .pipe( map(data => data['artist'][x]['uri'].split(':')[2]));
   }
 
-  getArtistById(id:string){
+  getArtistById(id: string ) {
     return this._http.get(this.url + `artists/${id}`, {headers: this.headers})
   }
 
-  getTopTracks(id:string){
+  getTopTracks(id: string ) {
     return this._http.get(this.url + `artists/${id}/top-tracks?country=us`, {headers: this.headers})
-      .pipe(map(data => data['tracks']))
+      .pipe(map(data => data['tracks']));
   }
 
 }
