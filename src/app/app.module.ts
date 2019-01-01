@@ -10,6 +10,7 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { MatchedComponent } from './matched/matched.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ArtistComponent } from './artist/artist.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
     AddUserComponent,
     EditUserComponent,
     UserListComponent,
-    MatchedComponent
+    MatchedComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
